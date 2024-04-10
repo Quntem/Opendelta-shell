@@ -20,13 +20,18 @@
       <div class="pl-3 pr-3 titlebar cursor-move font-sans flex items-center font-medium justify-between">
         window name goes here
         <div class="flex-row flex">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 25" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 25" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" onclick="closewin('window1')">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-          </svg>          
+          </svg>         
         </div>
       </div>
-      <div class="window-content">
-
+      <div class="window-content grid place-items-center">
+        <button type="button" class="bg-violet-500 hover:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300 active:bg-violet-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold text-white" onclick="console.log(openwins())">
+          Log Open Windows
+        </button>
       </div>
     </div>
   </div>
