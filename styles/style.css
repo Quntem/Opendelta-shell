@@ -18,7 +18,7 @@
 }
 
 .titlebar {
-  height: 40px;
+  height: 50px;
   width: 100%;
   margin: 0px;
 }
@@ -29,4 +29,8 @@ body {
   margin: 0px;
   background: rgb(37,255,159);
   background: linear-gradient(90deg, rgba(37,255,159,1) 0%, rgba(0,247,255,1) 100%);
+}
+
+.window-content {
+  overflow: scroll;
 }
