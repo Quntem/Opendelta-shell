@@ -99,3 +99,6 @@ function sf(filename) {
         })
     return files
 }
+function version() {
+    termlog("Quntem OpenDelta 0.0.1")
+}
