@@ -2,6 +2,15 @@ function closewin(elementid) {
     const element = document.getElementById(elementid);
     element.remove();
 }
+function setserve() {
+    fetch('config/server.json')
+        .then(response => response.json())
+        .then(response => {
+            termlog(response.location)
+            fileserver = response.location
+        })
+
+}
 function openwins() {
     var windowDivs = document.querySelectorAll('div.window');
     var windowIds = Array.from(windowDivs).map(function(div) {
@@ -89,6 +98,13 @@ function ls() {
         })
     return files
 }
+function sysinfo() {
+    fetch(fileserver + "/api/system/getinfo")
+        .then(response => response.json())
+        .then (response => {
+            termlog("system: " + response.systemtype + ", name: " + response.hostname + ", uptime: " + response.uptime)
+        })
+}
 function sf(filename) {
     files = []
     fetch(fileserver + "/api/files/get/?file=" + filename)
@@ -100,5 +116,5 @@ function sf(filename) {
     return files
 }
 function version() {
-    termlog("Quntem OpenDelta 0.0.1")
+    termlog("Quntem OpenDelta 0.0.1");
 }
