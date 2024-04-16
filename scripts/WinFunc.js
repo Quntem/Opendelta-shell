@@ -1,3 +1,5 @@
+currentdir = ""
+
 function closewin(elementid) {
     const element = document.getElementById(elementid);
     element.remove();
@@ -34,6 +36,7 @@ function newwin() {
             const closeIcon = newWindow.querySelector('#closebutton');
             closeIcon.setAttribute('onclick', `closewin('window${newid}')`);
             closeIcon.id = "closeicon" + newid;
+            $( "#window" + newid ).resizable()
         })
         .catch(error => console.error('Error fetching HTML:', error));
 }
@@ -86,16 +89,23 @@ function getfiles(fileurl) {
         })
     return files
 }
+function cd(dir) {
+    if (dir == "clear") {
+        currentdir == ""
+    } else {
+        currentdir += "/" + dir
+    }
+}
 function ls() {
-    files = []
-    fetch(fileserver + "/api/files/list")
+    files = [];
+    fetch(fileserver + "/api/files/list/?dir=" + currentdir)
         .then(response => response.json())
         .then (data => {
             for(let i = 0; i < data.length; i++) {
                 files += data[i] + ", ";
             };
             termlog(files);
-        })
+        });
     return files
 }
 function sysinfo() {
