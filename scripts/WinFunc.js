@@ -33,10 +33,11 @@ function newwin() {
             newTitlebar.id = "titlebar" + newid;
             $( "#window" + newid ).draggable({ handle: "#titlebar" + newid });
             $('.window').draggable({ handle: ".titlebar" });
+            $( "#window" + newid ).resizable()
+            $(".window").resizable()
             const closeIcon = newWindow.querySelector('#closebutton');
             closeIcon.setAttribute('onclick', `closewin('window${newid}')`);
             closeIcon.id = "closeicon" + newid;
-            $( "#window" + newid ).resizable()
         })
         .catch(error => console.error('Error fetching HTML:', error));
 }
@@ -53,6 +54,8 @@ function newwinfromurl(winurl) {
             newTitlebar.id = "titlebar" + newid;
             $( "#window" + newid ).draggable({ handle: "#titlebar" + newid });
             $('.window').draggable({ handle: ".titlebar" });
+            $( "#window" + newid ).resizable()
+            $(".window").resizable()
             const closeIcon = newWindow.querySelector('#closebutton');
             closeIcon.setAttribute('onclick', `closewin('window${newid}')`);
             closeIcon.id = "closeicon" + newid;

@@ -3,6 +3,11 @@
   width: 100%;
 }
 
+.wp {
+  height: calc(100% - 54px);
+  width: 100%;
+}
+
 .window {
   position: absolute;
   top: 10px;
@@ -27,10 +32,26 @@ body {
   height: 100vh;
   width: 100vw;
   margin: 0px;
-  background: rgb(37,255,159);
-  background: linear-gradient(90deg, rgba(37,255,159,1) 0%, rgba(0,247,255,1) 100%);
+  /* background: rgb(37,255,159);*/
+  /* background: linear-gradient(90deg, rgba(37,255,159,1) 0%, rgba(0,247,255,1) 100%); */
+  background-image: url("WallPaper.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .window-content {
   overflow: scroll;
+}
+
+.header {
+  height: 60px;
+  width: 100%;
+  color: white;
+}
+
+.qdfull {
+  height: calc(100% - 60px);
+  width: 100%;
+  color: rgb(211, 211, 211);
 }
