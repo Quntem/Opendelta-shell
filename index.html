@@ -9,6 +9,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="scripts/WinFunc.js"></script>
   <script src="scripts/Windraw.js"></script>
+  <script src="scripts/Apps.js"></script>
+  <script src="scripts/Files.js"></script>
+  <script src="https://kit.fontawesome.com/db21e9103f.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
   <link rel="stylesheet" href="styles/style.css"/>
   <link rel="stylesheet" href="styles/poppinsfont.css"/>
@@ -20,10 +26,40 @@
 </head>
 <body class="shadow-lg">
   <div id="desktop">
+    <div id="desktopfilesarea" style="height: 100%; width: 100%; display: flex; flex-direction: column; flex-wrap: wrap; align-content: flex-start;">
+    </div>
   </div>
   <div id="taskbar" class="pl-3 pr-3 mx-auto pt-3 pb-3 flex-row flex shadow-lg bg-slate-50/75 backdrop-blur-md z-50">
-    <img src="assets/menu.png" width="30px" height="30px" onclick="newwin()"></img>
-    <img src="assets/search.png" width="30px" height="30px" class="ml-2"></img>
+    <img src="assets/menu.png" width="30px" height="30px"></img>
+    <img src="assets/search.png" width="30px" height="30px" class="ml-2 mr-1"></img>
   </div>
+  <script>
+    fetch('config/server.json')
+        .then(response => response.json())
+        .then(response => {
+            fileserver = response.location
+            createfileitems("desktopfilesarea")
+        })
+    drawtbapps("taskbar")
+    $(function() {
+    $.contextMenu({
+        selector: '#desktopfilesarea', 
+        callback: function(key, options) {
+            var m = "clicked: " + key;
+            window.console && console.log(m) || alert(m); 
+        },
+        items: {
+            "Refresh": {name: "Refresh", icon: "fa-rotate-right"},
+            "Wallpaper": {name: "Change Wallpaper", icon: "fa-image"},
+            "Settings": {name: "Settings", icon: "fa-gear"},
+            "Paste": {name: "Paste", icon: "paste"},
+        }
+    });
+
+    $('#desktopfilesarea').on('click', function(e){
+        console.log('clicked', this);
+    })    
+});
+  </script>
 </body>
 </html>

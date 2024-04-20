@@ -12,9 +12,11 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 400px;
-  height: 300px;
+  width: 750px;
+  height: 450px;
   overflow: hidden;
+  border-radius: 13px;
+  resize: both;
 }
 
 .window-content {

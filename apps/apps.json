@@ -1,0 +1,20 @@
+{
+    "apps":[
+        {
+            "title":"Terminal",
+            "mainwin":"http://localhost:4002/apps/terminal/views/terminal.html",
+            "icon":"apps/terminal/assets/icon.png",
+            "discription":"The terminal for OpenDelta",
+            "manifest":"apps/terminal/manifest.json",
+            "pinned": true
+        },
+        {
+            "title":"Files",
+            "mainwin":"http://localhost:4002/apps/files/views/files.html",
+            "icon":"apps/files/assets/icon.png",
+            "discription":"The file manager for OpenDelta",
+            "manifest":"apps/files/manifest.json",
+            "pinned": true
+        }
+    ]
+}

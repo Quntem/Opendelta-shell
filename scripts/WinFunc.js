@@ -2,13 +2,13 @@ currentdir = ""
 
 function closewin(elementid) {
     const element = document.getElementById(elementid);
+    console.log("test")
     element.remove();
 }
 function setserve() {
     fetch('config/server.json')
         .then(response => response.json())
         .then(response => {
-            termlog(response.location)
             fileserver = response.location
         })
 
@@ -31,7 +31,7 @@ function newwin() {
             newWindow.id = "window" + newid;
             const newTitlebar = desktop.querySelector('#newwindowtitlebar');
             newTitlebar.id = "titlebar" + newid;
-            $( "#window" + newid ).draggable({ handle: "#titlebar" + newid });
+            $( "#window" + newid ).draggable({ handle: "#titlebar" + newid })
             $('.window').draggable({ handle: ".titlebar" });
             $( "#window" + newid ).resizable()
             $(".window").resizable()
@@ -41,7 +41,7 @@ function newwin() {
         })
         .catch(error => console.error('Error fetching HTML:', error));
 }
-function newwinfromurl(winurl) {
+function newwinfromurl(winurl, script) {
     fetch(winurl)
         .then(response => response.text())
         .then(html => {
@@ -51,14 +51,18 @@ function newwinfromurl(winurl) {
             const newWindow = desktop.querySelector('#newwindow');
             newWindow.id = "window" + newid;
             const newTitlebar = desktop.querySelector('#newwindowtitlebar');
+            newTitlebar.setAttribute('onclick', `bringfront('#window${newid}')`);
             newTitlebar.id = "titlebar" + newid;
             $( "#window" + newid ).draggable({ handle: "#titlebar" + newid });
             $('.window').draggable({ handle: ".titlebar" });
-            $( "#window" + newid ).resizable()
-            $(".window").resizable()
+            //$( "#window" + newid ).resizable();
             const closeIcon = newWindow.querySelector('#closebutton');
-            closeIcon.setAttribute('onclick', `closewin('window${newid}')`);
+            closeIcon.setAttribute('onmousedown', `closewin('window${newid}')`);
             closeIcon.id = "closeicon" + newid;
+            eval(script);
+
+            // Re-initialize resizable for all windows
+            //$(".window").resizable();
         })
         .catch(error => console.error('Error fetching HTML:', error));
 }
@@ -130,4 +134,7 @@ function sf(filename) {
 }
 function version() {
     termlog("Quntem OpenDelta 0.0.1");
+}
+function bringfront(id) {
+    $(id).parent().append($(id))
 }
