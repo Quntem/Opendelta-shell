@@ -15,6 +15,14 @@
             "discription":"The file manager for OpenDelta",
             "manifest":"apps/files/manifest.json",
             "pinned": true
+        },
+        {
+            "title":"Files",
+            "mainwin":"http://localhost:4002/apps/textedit/views/edit.html",
+            "icon":"apps/textedit/assets/icon.png",
+            "discription":"A simple text editor",
+            "manifest":"apps/textedit/manifest.json",
+            "pinned": true
         }
     ]
 }

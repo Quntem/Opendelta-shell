@@ -11,6 +11,10 @@
   <script src="scripts/Windraw.js"></script>
   <script src="scripts/Apps.js"></script>
   <script src="scripts/Files.js"></script>
+  <script src="scripts/Opendelta.js"></script>
+  <link rel="stylesheet" href="drop-theme-arrows.css" />
+  <script src="tether.min.js"></script>
+  <script src="drop.min.js"></script>
   <script src="https://kit.fontawesome.com/db21e9103f.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
@@ -24,28 +28,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-<body class="shadow-lg">
+<body id="mainbody" class="shadow-lg">
   <div id="desktop">
     <div id="desktopfilesarea" style="height: 100%; width: 100%; display: flex; flex-direction: column; flex-wrap: wrap; align-content: flex-start;">
     </div>
   </div>
-  <div id="taskbar" class="pl-3 pr-3 mx-auto pt-3 pb-3 flex-row flex shadow-lg bg-slate-50/75 backdrop-blur-md z-50">
-    <img src="assets/menu.png" width="30px" height="30px"></img>
-    <img src="assets/search.png" width="30px" height="30px" class="ml-2 mr-1"></img>
-  </div>
   <script>
+    const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+const config = urlParams.get('config')
+console.log(config);
+setTimeout(eval(config), 1000)
+if(config == null) {
     fetch('config/server.json')
         .then(response => response.json())
         .then(response => {
             fileserver = response.location
             createfileitems("desktopfilesarea")
         })
-    drawtbapps("taskbar")
     $(function() {
     $.contextMenu({
         selector: '#desktopfilesarea', 
         callback: function(key, options) {
-            var m = "clicked: " + key;
+            var m = "clicked: " + key; 
             window.console && console.log(m) || alert(m); 
         },
         items: {
@@ -60,6 +66,9 @@
         console.log('clicked', this);
     })    
 });
+document.getElementById("mainbody").innerHTML += '<div id="taskbar" class="pl-3 pr-3 mx-auto pt-3 pb-3 flex-row flex shadow-lg bg-slate-50/75 backdrop-blur-md z-50"><img draggable="false" src="assets/menu.png" width="30px" height="30px"></img><img draggable="false" src="assets/search.png" width="30px" height="30px" class="ml-2 mr-1"></img></div>'
+drawtbapps("taskbar")
+}
   </script>
 </body>
 </html>
